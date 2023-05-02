@@ -32,7 +32,7 @@ export const authOptions = {
             ),
             q.Create(
               q.Collection('users'),
-              { data: user.email }
+              { data: { email: user.email } }
             ),
             q.Get(
               q.Match(
