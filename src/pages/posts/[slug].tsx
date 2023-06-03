@@ -43,9 +43,16 @@ export const getServerSideProps: GetServerSideProps = async ({req, res, params})
   const session = await getServerSession(req, res, authOptions);
   const { slug } = params;
 
-  if(!session) console.log("Não logado");
+  if(!session.activeSubscription) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false
+      }
+    }
+  }
 
-  const prismicClient = await createClient();
+  const prismicClient = createClient();
   const postData = await prismicClient.getByUID('post', `${slug}`);
 
   const post = {
