@@ -70,7 +70,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const prismicClient = createClient();
   const postData = await prismicClient.getByUID('post', `${slug}`);
 
-  console.log(JSON.stringify(postData, null, 2));
   const previewContent = postData.data.content.slice(0, 3) as [];
 
   const post = {
